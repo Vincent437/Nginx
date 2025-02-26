@@ -23,6 +23,10 @@ CConfig::CConfig() {}
 // 析构函数
 CConfig::~CConfig()
 {
+    for(std::vector<LPCConfItem*>::iterator pos = m_ConfigItemList.begin(); pos != m_ConfigItemList.end(); pos++){
+        delete(*pos);
+    } // end for
+
     // 清空数组
     m_ConfigItemList.clear();
 
@@ -67,7 +71,7 @@ bool CConfig::Load(const std::string conf_name)
         size_t equal_pos = line.find('='); // 查找 '=' 所在位置
         if(equal_pos!=std::string::npos){
             // 创建临时指针保存信息
-            LPCConfItem *p_confitem = new LPCConfItem();
+            LPCConfItem p_confitem = new LPCConfItem();
 
             // 去除读取配置信息时可能多余读取的左侧或右侧空格
             p_confitem->ItemName = trim(line.substr(0,equal_pos));
@@ -92,11 +96,11 @@ bool CConfig::Load(const std::string conf_name)
  **************************************************************/
 std::string CConfig::GetString(const std::string item_name)
 {
-	std::vector<LPCConfItem>::iterator pos;	
+	std::vector<LPCConfItem*>::iterator pos;	
 	for(pos = m_ConfigItemList.begin(); pos != m_ConfigItemList.end(); ++pos)
 	{	
-		if(pos->ItemName==item_name)
-			return (pos)->ItemContent;
+		if((*pos)->ItemName==item_name)
+			return (*pos)->ItemContent;
 	}//end for
 	return NULL;
 }
@@ -110,11 +114,11 @@ std::string CConfig::GetString(const std::string item_name)
  **************************************************************/
 int CConfig::GetIntDefault(const std::string item_name,const int def)
 {
-	std::vector<LPCConfItem>::iterator pos;	
+	std::vector<LPCConfItem*>::iterator pos;	
 	for(pos = m_ConfigItemList.begin(); pos !=m_ConfigItemList.end(); ++pos)
 	{	
-		if(pos->ItemName==item_name)
-			return std::stoi(pos->ItemContent);
+		if((*pos)->ItemName==item_name)
+			return std::stoi((*pos)->ItemContent);
 	}//end for
 	return def;
 }

@@ -68,7 +68,7 @@ public:
 
 public:
 	// 根据定义的结构体形式读取配置文件信息并存储到列表当中
-	std::vector<LPCConfItem> m_ConfigItemList; 
+	std::vector<LPCConfItem*> m_ConfigItemList; 
 };
 
 #endif
