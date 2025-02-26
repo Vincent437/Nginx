@@ -102,7 +102,7 @@ std::string CConfig::GetString(const std::string item_name)
 		if((*pos)->ItemName==item_name)
 			return (*pos)->ItemContent;
 	}//end for
-	return NULL;
+	return "";
 }
 
 /***************************************************************

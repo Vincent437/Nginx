@@ -19,21 +19,19 @@ struct LPCConfItem
 };
 
 // 日志存储结构体
-typedef struct
+struct ngx_log_t
 {
 	// 日志等级
 	int log_level;
 	// 日志文件描述符
 	int fd;
 
-} ngx_log_t;
+};
 
 // 外部全局变量声明
 
-// 保存 argv 参数所需内存空间大小
-extern size_t g_argvneedmem;
 // 环境变量所占内存大小
-extern size_t g_envneedmem;
+extern size_t g_environlen;
 // 参数个数
 extern int g_os_argc;
 // 原始命令行参数数组
