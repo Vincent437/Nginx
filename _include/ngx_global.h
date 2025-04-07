@@ -12,7 +12,7 @@
 // 结构体定义
 
 // 读取配置文件信息的结构体
-struct LPCConfItem
+struct CConfItem
 {
 	std::string ItemName;
 	std::string ItemContent;

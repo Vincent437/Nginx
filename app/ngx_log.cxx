@@ -61,7 +61,7 @@ void ngx_log_init()
     // nlen = strlen((const char *)plogname);
 
     // 打开字符串指向的文件，权限为 只写打开|追加到末尾|文件不存在则创建，并设定文件访问权限
-    ngx_log.fd = open((const char *)plogname, O_WRONLY | O_APPEND | O_CREAT, 0644);
+    ngx_log.fd = open((const char *)plogname, O_WRONLY | O_APPEND | O_CREAT, 644);
     // ngx_log.fd = open((const char *)plogname,O_WRONLY|O_APPEND|O_CREAT|O_DIRECT,0644);   //绕过内和缓冲区，write()成功则写磁盘必然成功，但效率可能会比较低；
 
     // 打开文件错误
